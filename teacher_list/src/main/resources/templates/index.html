@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Teacher Database</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+</head>
+<body>
+<div class="container">
+    <h1 class="text-center my-4">Teacher's List</h1>
+    <a class="btn btn-secondary mb-2" href="/teachers/addteacher" >Add Teacher</a>
+
+    <table class="table table-dark table-striped">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>First name</th>
+            <th>Last name</th>
+            <th>E-mail</th>
+            <th>Action</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="teacher : ${teachers}">
+            <td th:text="${teacher.id}"></td>
+            <td th:text="${teacher.firstName}"></td>
+            <td th:text="${teacher.lastName}"></td>
+            <td th:text="${teacher.email}"></td>
+            <td style="white-space: nowrap">
+                <a class="btn btn-secondary btn-sm" th:href="@{/teachers/updateteacher(id=${teacher.id})}">Edit</a>
+                <a class="btn btn-danger btn-sm" th:href="@{/teachers/delete(id=${teacher.id})}" onclick="return confirm('Do you want to delete this teacher?')">Delete</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+</body>
+</html>
